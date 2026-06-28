@@ -225,16 +225,20 @@
     "asistenteTop3": ["","",""]
   },
   "scoring": {
-    "group_classifier": 3,
-    "group_exact_score": 2,
-    "spain_group_exact": 3,
+    "spain_group_exact": 5,
     "spain_ko_exact": 5,
-    "campeon": 10,
-    "subcampeon": 6,
-    "revelacion": 4,
-    "decepcion": 4,
-    "pichichi": 5,
-    "mvp": 5,
-    "asistente": 5
+    "group_1st": 2,
+    "group_2nd": 4,
+    "revelacion": 6,
+    "estrellada": 6,
+    "pichichi_top3": 5,
+    "pichichi_out": 10,
+    "asistente_top3": 4,
+    "asistente_out": 8,
+    "mvp": 8,
+    "campeon": 20,
+    "campeon_if_sub": 10,
+    "subcampeon": 10,
+    "subcampeon_if_camp": 5
   }
 }
