@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Porra Mawuli · Mundial 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+      --rojo:    #C8102E;
+      --oro:     #F5C518;
+      --navy:    #0A1628;
+      --navy2:   #122040;
+      --gris:    #1E2D45;
+      --gris2:   #2A3F5F;
+      --blanco:  #F0F4FF;
+      --texto:   #C8D6F0;
+      --verde:   #22C55E;
+      --naranja: #F59E0B;
+      --azul:    #3B82F6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--texto);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy2) 0%, #1a0a0a 100%);
+      border-bottom: 3px solid var(--rojo);
+      padding: 24px 20px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(200,16,46,0.3);
+    }
+    header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 6vw, 52px);
+      color: var(--blanco);
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+    header h1 span { color: var(--rojo); }
+    header p { font-size: 12px; color: var(--texto); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── NAV TABS ── */
+    nav {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+      background: var(--navy2);
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-bottom: 1px solid var(--gris2);
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav button {
+      flex-shrink: 0;
+      background: var(--gris);
+      border: none;
+      color: var(--texto);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    nav button:hover { background: var(--gris2); }
+    nav button.active { background: var(--rojo); color: #fff; }
+
+    /* ── MAIN ── */
+    main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
+
+    /* ── SECTION ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── CLASIFICACION ── */
+    .ranking-card {
+      background: var(--navy2);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--gris2);
+    }
+    .ranking-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--gris);
+    }
+    .rank-pos {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: var(--oro);
+      min-width: 36px;
+      line-height: 1;
+    }
+    .rank-pos.pos-1 { color: #FFD700; }
+    .rank-pos.pos-2 { color: #C0C0C0; }
+    .rank-pos.pos-3 { color: #CD7F32; }
+    .rank-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--blanco);
+      flex: 1;
+    }
+    .rank-pts {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--oro);
+    }
+    .rank-pts span { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--texto); font-weight: 500; margin-left: 4px; }
+    .rank-breakdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 20px;
+    }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--gris);
+      color: var(--texto);
+      white-space: nowrap;
+    }
+    .badge.hit { background: rgba(34,197,94,0.15); color: var(--verde); border: 1px solid rgba(34,197,94,0.3); }
+    .badge.miss { background: rgba(239,68,68,0.1); color: #F87171; border: 1px solid rgba(239,68,68,0.2); }
+    .badge.pending { background: rgba(245,197,24,0.1); color: var(--oro); border: 1px solid rgba(245,197,24,0.2); }
+
+    /* ── GRUPOS ── */
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .group-card {
+      background: var(--navy2);
+      border-radius: 10px;
+      border: 1px solid var(--gris2);
+      overflow: hidden;
+    }
+    .group-title {
+      background: var(--gris);
+      padding: 8px 14px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--oro);
+      border-bottom: 1px solid var(--gris2);
+    }
+    .group-body { padding: 10px 14px; }
+    .group-result {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+    .result-label { color: var(--texto); min-width: 20px; font-weight: 600; }
+    .result-teams { flex: 1; }
+    .team-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin: 1px 2px 1px 0;
+    }
+    .team-pill.correct { background: rgba(34,197,94,0.2); color: var(--verde); border: 1px solid rgba(34,197,94,0.3); }
+    .team-pill.wrong   { background: rgba(239,68,68,0.1); color: #F87171; border: 1px solid rgba(239,68,68,0.2); }
+    .team-pill.neutral { background: var(--gris); color: var(--texto); }
+
+    /* ── ESPAÑA ── */
+    .spain-section {
+      background: var(--navy2);
+      border-radius: 12px;
+      border: 1px solid var(--gris2);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .spain-header {
+      background: linear-gradient(90deg, var(--rojo), #8B0000);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .spain-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+    .spain-flag { font-size: 24px; }
+
+    .ko-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--texto);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 20px 4px;
+      opacity: 0.6;
+    }
+    .matches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      padding: 0 14px 14px;
+    }
+    .match-card {
+      background: var(--gris);
+      border-radius: 8px;
+      padding: 12px 14px;
+      border: 1px solid var(--gris2);
+    }
+    .match-player { font-size: 11px; font-weight: 700; color: var(--texto); margin-bottom: 6px; opacity: 0.7; }
+    .match-score {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .score-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--blanco);
+      min-width: 28px;
+      text-align: center;
+    }
+    .score-sep { font-size: 20px; color: var(--gris2); }
+    .score-pts {
+      text-align: center;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+    .real-result {
+      background: rgba(200,16,46,0.15);
+      border: 1px solid rgba(200,16,46,0.3);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin: 0 14px 14px;
+    }
+    .real-result-label { font-size: 10px; font-weight: 700; color: var(--rojo); letter-spacing: 1px; margin-bottom: 6px; }
+    .real-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--blanco);
+      text-align: center;
+    }
+
+    /* ── PREDICCIONES ── */
+    .pred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+    }
+    .pred-card {
+      background: var(--navy2);
+      border-radius: 10px;
+      border: 1px solid var(--gris2);
+      overflow: hidden;
+    }
+    .pred-name {
+      background: var(--gris);
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--blanco);
+      border-bottom: 1px solid var(--gris2);
+    }
+    .pred-body { padding: 12px 16px; }
+    .pred-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+    .pred-row:last-child { border-bottom: none; }
+    .pred-key { color: var(--texto); opacity: 0.7; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .pred-val { color: var(--blanco); font-weight: 500; }
+    .pred-val.hit  { color: var(--verde); }
+    .pred-val.miss { color: #F87171; }
+    .pred-val.pending { color: var(--oro); }
+
+    /* ── PUNTUACION INFO ── */
+    .scoring-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .scoring-item {
+      background: var(--navy2);
+      border-radius: 8px;
+      border: 1px solid var(--gris2);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scoring-item span:first-child { font-size: 13px; color: var(--texto); }
+    .scoring-pts { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--oro); }
+
+    /* ── SECTION TITLE ── */
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--blanco);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--rojo);
+    }
+    .sec-title span { color: var(--rojo); }
+    .subsec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: var(--texto);
+      margin: 20px 0 10px;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty { text-align: center; padding: 40px; color: var(--texto); opacity: 0.5; font-size: 14px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .rank-pts { font-size: 24px; }
+      .rank-name { font-size: 16px; }
+      .score-val { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Porra <span>Mawuli</span> · Mundial 2026</h1>
+  <p>Actualizado · USA / CAN / MEX 2026</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('clasificacion')">🏆 Clasificación</button>
+  <button onclick="showTab('grupos')">🗂 Grupos</button>
+  <button onclick="showTab('espana')">🇪🇸 España</button>
+  <button onclick="showTab('predicciones')">🔮 Predicciones</button>
+  <button onclick="showTab('puntuacion')">📊 Puntuación</button>
+</nav>
+
+<main>
+  <!-- CLASIFICACION -->
+  <div id="tab-clasificacion" class="section active">
+    <p class="sec-title">🏆 Clasificación <span>General</span></p>
+    <div id="ranking-list"></div>
+  </div>
+
+  <!-- GRUPOS -->
+  <div id="tab-grupos" class="section">
+    <p class="sec-title">🗂 Fase de <span>Grupos</span></p>
+    <div class="subsec-title">Resultado real</div>
+    <div id="groups-real" class="groups-grid"></div>
+    <div class="subsec-title">Predicciones por jugador</div>
+    <div id="groups-players"></div>
+  </div>
+
+  <!-- ESPAÑA -->
+  <div id="tab-espana" class="section">
+    <p class="sec-title">🇪🇸 Partidos de <span>España</span></p>
+    <div id="spain-content"></div>
+  </div>
+
+  <!-- PREDICCIONES -->
+  <div id="tab-predicciones" class="section">
+    <p class="sec-title">🔮 <span>Predicciones</span> Finales</p>
+    <div id="pred-content" class="pred-grid"></div>
+  </div>
+
+  <!-- PUNTUACION -->
+  <div id="tab-puntuacion" class="section">
+    <p class="sec-title">📊 Sistema de <span>Puntuación</span></p>
+    <div id="scoring-content"></div>
+  </div>
+</main>
+
+<script>
+// ══════════════════════════════════════════════
+//  LOAD DATA
+// ══════════════════════════════════════════════
+async function loadData() {
+  try {
+    const res = await fetch('./porra.json');
+    const data = await res.json();
+    init(data);
+  } catch(e) {
+    document.body.innerHTML += '<p style="color:red;padding:20px">Error cargando porra.json: ' + e.message + '</p>';
+  }
+}
+
+// ══════════════════════════════════════════════
+//  SCORING ENGINE
+// ══════════════════════════════════════════════
+function scorePlayer(player, results, sc) {
+  let pts = 0;
+  const detail = { grupos: 0, spainGroup: 0, spainKO: 0, campeon: 0, sub: 0, rev: 0, dec: 0, pichichi: 0, mvp: 0, asistente: 0 };
+
+  // --- Grupos ---
+  const rg = results.groups;
+  const pg = player.groups;
+  const groups = Object.keys(rg);
+  groups.forEach(g => {
+    const real = rg[g];          // [1st, 2nd]
+    const pred = pg[g] || [];
+    const realSet = new Set(real.map(t => t.trim().toLowerCase()));
+    // Acierto 1º clasificado
+    if (pred[0] && realSet.has(pred[0].trim().toLowerCase())) pts += sc.group_classifier, detail.grupos += sc.group_classifier;
+    // Acierto 2º clasificado
+    if (pred[1] && realSet.has(pred[1].trim().toLowerCase())) pts += sc.group_classifier, detail.grupos += sc.group_classifier;
+    // Bonus marcador exacto 1º (si pred[0] === real[0] exactamente en posición)
+    if (pred[0] && pred[0].trim().toLowerCase() === real[0].trim().toLowerCase()) pts += sc.group_exact_score, detail.grupos += sc.group_exact_score;
+    if (pred[1] && pred[1].trim().toLowerCase() === real[1].trim().toLowerCase()) pts += sc.group_exact_score, detail.grupos += sc.group_exact_score;
+  });
+
+  // --- España fase de grupos (marcador exacto) ---
+  const rs = results.spain;
+  const ps = player.spain;
+  if (rs && ps) {
+    rs.forEach((real, i) => {
+      const pred = ps[i] || ['',''];
+      if (real[0] !== '' && pred[0] !== '' && pred[0] === real[0] && pred[1] === real[1]) {
+        pts += sc.spain_group_exact; detail.spainGroup += sc.spain_group_exact;
+      }
+    });
+  }
+
+  // --- España eliminatorias (marcador exacto, 5 pts) ---
+  const rko = results.spain_ko || {};
+  const pko = player.spain_ko || {};
+  const koRounds = ['r16','r8','qf','sf','final'];
+  koRounds.forEach(r => {
+    const real = rko[r] || ['',''];
+    const pred = pko[r] || ['',''];
+    if (real[0] !== '' && real[1] !== '' && pred[0] !== '' && pred[1] !== '') {
+      if (pred[0] === real[0] && pred[1] === real[1]) {
+        pts += sc.spain_ko_exact; detail.spainKO += sc.spain_ko_exact;
+      }
+    }
+  });
+
+  // --- Campeón / Subcampeón / Revelación / Decepción ---
+  const eqMatch = (a, b) => a && b && a.trim().toLowerCase() === b.trim().toLowerCase();
+  if (results.campeon && eqMatch(player.campeon, results.campeon))         { pts += sc.campeon;     detail.campeon = sc.campeon; }
+  if (results.subcampeon && eqMatch(player.subcampeon, results.subcampeon)){ pts += sc.subcampeon;  detail.sub = sc.subcampeon; }
+  if (results.revelacion && eqMatch(player.revelacion, results.revelacion)){ pts += sc.revelacion;  detail.rev = sc.revelacion; }
+  if (results.decepcion && eqMatch(player.decepcion, results.decepcion))   { pts += sc.decepcion;   detail.dec = sc.decepcion; }
+
+  // --- Pichichi (top3 list) ---
+  const pTop3 = results.pichichiTop3 || [];
+  if (player.pichichi && pTop3.some(p => eqMatch(p, player.pichichi)))     { pts += sc.pichichi;    detail.pichichi = sc.pichichi; }
+
+  // --- MVP ---
+  if (results.mvp && eqMatch(player.mvp, results.mvp))                     { pts += sc.mvp;         detail.mvp = sc.mvp; }
+
+  // --- Asistente (top3) ---
+  const aTop3 = results.asistenteTop3 || [];
+  if (player.asistente && aTop3.some(a => eqMatch(a, player.asistente)))   { pts += sc.asistente;   detail.asistente = sc.asistente; }
+
+  return { pts, detail };
+}
+
+// ══════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════
+function eqTeam(a, b) {
+  return a && b && a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+function scoreClass(val, isHit) {
+  if (val === '' || val === undefined) return 'pending';
+  return isHit ? 'hit' : 'miss';
+}
+function ko_label(r) {
+  return { r16: '1/16 de Final', r8: 'Octavos de Final', qf: 'Cuartos de Final', sf: 'Semifinal', final: 'Final' }[r] || r;
+}
+
+// ══════════════════════════════════════════════
+//  TABS
+// ══════════════════════════════════════════════
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ══════════════════════════════════════════════
+//  RENDER RANKING
+// ══════════════════════════════════════════════
+function renderRanking(players, results, sc) {
+  const scored = players.map(p => ({
+    name: p.name,
+    ...scorePlayer(p, results, sc)
+  })).sort((a,b) => b.pts - a.pts);
+
+  const el = document.getElementById('ranking-list');
+  el.innerHTML = '';
+  scored.forEach((s, i) => {
+    const d = s.detail;
+    el.innerHTML += `
+      <div class="ranking-card">
+        <div class="ranking-header">
+          <div class="rank-pos pos-${i+1}">${i+1}</div>
+          <div class="rank-name">${s.name}</div>
+          <div class="rank-pts">${s.pts}<span>pts</span></div>
+        </div>
+        <div class="rank-breakdown">
+          <span class="badge">Grupos: ${d.grupos}pt</span>
+          <span class="badge">🇪🇸 GF: ${d.spainGroup}pt</span>
+          <span class="badge">🇪🇸 KO: ${d.spainKO}pt</span>
+          ${d.campeon ? `<span class="badge hit">🏆 Campeón +${d.campeon}</span>` : ''}
+          ${d.sub ? `<span class="badge hit">🥈 Subcampeón +${d.sub}</span>` : ''}
+          ${d.rev ? `<span class="badge hit">⭐ Revelación +${d.rev}</span>` : ''}
+          ${d.dec ? `<span class="badge hit">😬 Decepción +${d.dec}</span>` : ''}
+          ${d.pichichi ? `<span class="badge hit">⚽ Pichichi +${d.pichichi}</span>` : ''}
+          ${d.mvp ? `<span class="badge hit">🌟 MVP +${d.mvp}</span>` : ''}
+          ${d.asistente ? `<span class="badge hit">🎯 Asistente +${d.asistente}</span>` : ''}
+        </div>
+      </div>`;
+  });
+}
+
+// ══════════════════════════════════════════════
+//  RENDER GRUPOS
+// ══════════════════════════════════════════════
+function renderGrupos(players, results) {
+  const rg = results.groups;
+  const groups = Object.keys(rg);
+
+  // Real results
+  const realEl = document.getElementById('groups-real');
+  realEl.innerHTML = '';
+  groups.forEach(g => {
+    const [t1, t2] = rg[g];
+    realEl.innerHTML += `
+      <div class="group-card">
+        <div class="group-title">Grupo ${g}</div>
+        <div class="group-body">
+          <div class="group-result"><span class="result-label">1º</span><span class="result-teams"><span class="team-pill neutral">${t1||'–'}</span></span></div>
+          <div class="group-result"><span class="result-label">2º</span><span class="result-teams"><span class="team-pill neutral">${t2||'–'}</span></span></div>
+        </div>
+      </div>`;
+  });
+
+  // Per-player groups
+  const playEl = document.getElementById('groups-players');
+  playEl.innerHTML = '';
+  players.forEach(p => {
+    let html = `<div class="subsec-title">${p.name}</div><div class="groups-grid">`;
+    groups.forEach(g => {
+      const real = rg[g] || [];
+      const pred = p.groups[g] || [];
+      const realSet = new Set(real.map(t => t.trim().toLowerCase()));
+      const c0 = pred[0] ? (realSet.has(pred[0].trim().toLowerCase()) ? 'correct' : 'wrong') : 'neutral';
+      const c1 = pred[1] ? (realSet.has(pred[1].trim().toLowerCase()) ? 'correct' : 'wrong') : 'neutral';
+      html += `
+        <div class="group-card">
+          <div class="group-title">Grupo ${g}</div>
+          <div class="group-body">
+            <div class="group-result"><span class="result-label">1º</span><span class="result-teams"><span class="team-pill ${c0}">${pred[0]||'–'}</span></span></div>
+            <div class="group-result"><span class="result-label">2º</span><span class="result-teams"><span class="team-pill ${c1}">${pred[1]||'–'}</span></span></div>
+          </div>
+        </div>`;
+    });
+    html += '</div>';
+    playEl.innerHTML += html;
+  });
+}
+
+// ══════════════════════════════════════════════
+//  RENDER ESPAÑA
+// ══════════════════════════════════════════════
+function renderEspana(players, results, sc) {
+  const el = document.getElementById('spain-content');
+  el.innerHTML = '';
+
+  // Grupo Spain
+  const spainGames = [
+    { label: 'Partido 1 · Fase de Grupos', idx: 0 },
+    { label: 'Partido 2 · Fase de Grupos', idx: 1 },
+    { label: 'Partido 3 · Fase de Grupos', idx: 2 },
+  ];
+
+  let html = `<div class="spain-section">
+    <div class="spain-header"><span class="spain-flag">🇪🇸</span><h3>Fase de Grupos</h3></div>`;
+
+  spainGames.forEach(({ label, idx }) => {
+    const real = (results.spain || [])[idx] || ['',''];
+    html += `<div class="ko-label">${label}</div>`;
+    if (real[0] !== '') {
+      html += `<div class="real-result">
+        <div class="real-result-label">✅ RESULTADO REAL</div>
+        <div class="real-score">España ${real[0]} – ${real[1]} Rival</div>
+      </div>`;
+    } else {
+      html += `<div class="real-result"><div class="real-result-label">⏳ Por jugar</div></div>`;
+    }
+    html += `<div class="matches-grid">`;
+    players.forEach(p => {
+      const pred = (p.spain || [])[idx] || ['',''];
+      const isHit = real[0] !== '' && pred[0] === real[0] && pred[1] === real[1];
+      const pending = real[0] === '' || pred[0] === '';
+      html += `<div class="match-card">
+        <div class="match-player">${p.name}</div>
+        <div class="match-score">
+          <span class="score-val" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">${pred[0]||'?'}</span>
+          <span class="score-sep">–</span>
+          <span class="score-val" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">${pred[1]||'?'}</span>
+        </div>
+        <div class="score-pts" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">
+          ${pending ? '–' : isHit ? `+${sc.spain_group_exact}pts ✓` : '0pts ✗'}
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // KO rounds
+  const koRounds = ['r16','r8','qf','sf','final'];
+  html += `<div class="spain-section">
+    <div class="spain-header"><span class="spain-flag">🇪🇸</span><h3>Fase Eliminatoria</h3></div>`;
+
+  koRounds.forEach(r => {
+    const real = (results.spain_ko || {})[r] || ['',''];
+    html += `<div class="ko-label">${ko_label(r)}</div>`;
+    if (real[0] !== '') {
+      html += `<div class="real-result">
+        <div class="real-result-label">✅ RESULTADO REAL</div>
+        <div class="real-score">España ${real[0]} – ${real[1]} Rival</div>
+      </div>`;
+    } else {
+      html += `<div class="real-result"><div class="real-result-label">⏳ Por jugar</div></div>`;
+    }
+    html += `<div class="matches-grid">`;
+    players.forEach(p => {
+      const pred = (p.spain_ko || {})[r] || ['',''];
+      const isHit = real[0] !== '' && pred[0] === real[0] && pred[1] === real[1];
+      const pending = real[0] === '' || pred[0] === '';
+      html += `<div class="match-card">
+        <div class="match-player">${p.name}</div>
+        <div class="match-score">
+          <span class="score-val" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">${pred[0]||'?'}</span>
+          <span class="score-sep">–</span>
+          <span class="score-val" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">${pred[1]||'?'}</span>
+        </div>
+        <div class="score-pts" style="color:${pending?'#888':isHit?'#22C55E':'#F87171'}">
+          ${pending ? '–' : isHit ? `+${sc.spain_ko_exact}pts ✓` : '0pts ✗'}
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════
+//  RENDER PREDICCIONES
+// ══════════════════════════════════════════════
+function renderPredicciones(players, results) {
+  const el = document.getElementById('pred-content');
+  el.innerHTML = '';
+  const eq = (a, b) => a && b && a.trim().toLowerCase() === b.trim().toLowerCase();
+  const pTop3 = results.pichichiTop3 || [];
+  const aTop3 = results.asistenteTop3 || [];
+
+  players.forEach(p => {
+    const rows = [
+      { key: 'Campeón',     val: p.campeon,    result: results.campeon,    hit: eq(p.campeon, results.campeon) },
+      { key: 'Subcampeón',  val: p.subcampeon, result: results.subcampeon, hit: eq(p.subcampeon, results.subcampeon) },
+      { key: 'Revelación',  val: p.revelacion, result: results.revelacion, hit: eq(p.revelacion, results.revelacion) },
+      { key: 'Decepción',   val: p.decepcion,  result: results.decepcion,  hit: eq(p.decepcion, results.decepcion) },
+      { key: 'Pichichi',    val: p.pichichi,   result: pTop3.join(', ') || '–', hit: pTop3.some(x => eq(x, p.pichichi)) },
+      { key: 'MVP',         val: p.mvp,        result: results.mvp,        hit: eq(p.mvp, results.mvp) },
+      { key: 'Asistente',   val: p.asistente,  result: aTop3.join(', ') || '–', hit: aTop3.some(x => eq(x, p.asistente)) },
+    ];
+    let html = `<div class="pred-card"><div class="pred-name">${p.name}</div><div class="pred-body">`;
+    rows.forEach(r => {
+      const isEmpty = !r.val;
+      const resultEmpty = !r.result || r.result === '–' || r.result === '';
+      const cls = isEmpty ? 'pending' : resultEmpty ? 'pending' : (r.hit ? 'hit' : 'miss');
+      html += `<div class="pred-row">
+        <span class="pred-key">${r.key}</span>
+        <span class="pred-val ${cls}">${r.val || '–'} ${cls === 'hit' ? '✓' : cls === 'miss' ? '✗' : ''}</span>
+      </div>`;
+    });
+    html += '</div></div>';
+    el.innerHTML += html;
+  });
+}
+
+// ══════════════════════════════════════════════
+//  RENDER PUNTUACION
+// ══════════════════════════════════════════════
+function renderPuntuacion(sc) {
+  const items = [
+    { label: 'Clasificado de grupo (cada uno)', pts: sc.group_classifier },
+    { label: 'Bonus posición exacta en grupo', pts: sc.group_exact_score },
+    { label: '🇪🇸 Resultado exacto fase grupos', pts: sc.spain_group_exact },
+    { label: '🇪🇸 Resultado exacto eliminatoria', pts: sc.spain_ko_exact },
+    { label: '🏆 Campeón del Mundial', pts: sc.campeon },
+    { label: '🥈 Subcampeón', pts: sc.subcampeon },
+    { label: '⭐ Revelación', pts: sc.revelacion },
+    { label: '😬 Decepción', pts: sc.decepcion },
+    { label: '⚽ Pichichi (top 3)', pts: sc.pichichi },
+    { label: '🌟 MVP del torneo', pts: sc.mvp },
+    { label: '🎯 Máx. asistencias (top 3)', pts: sc.asistente },
+  ];
+  const el = document.getElementById('scoring-content');
+  el.innerHTML = `<p class="sec-title">📊 Sistema de <span>Puntuación</span></p><div class="scoring-grid">`;
+  items.forEach(it => {
+    el.innerHTML += `<div class="scoring-item"><span>${it.label}</span><span class="scoring-pts">${it.pts}pt</span></div>`;
+  });
+  el.innerHTML += '</div>';
+  el.innerHTML += `<div style="margin-top:24px;background:rgba(245,197,24,0.08);border:1px solid rgba(245,197,24,0.2);border-radius:10px;padding:16px 20px;font-size:13px;color:var(--texto)">
+    <strong style="color:var(--oro)">ℹ️ Nota sobre las eliminatorias de España:</strong>
+    Hay que predecir el marcador exacto de cada partido de España (incluyendo prórroga si la hay).
+    Cada acierto vale <strong style="color:var(--oro)">5 puntos</strong>: 1/16, Octavos, Cuartos, Semifinal y Final.
+  </div>`;
+}
+
+// ══════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════
+function init(data) {
+  const { players, results, scoring: sc } = data;
+  renderRanking(players, results, sc);
+  renderGrupos(players, results);
+  renderEspana(players, results, sc);
+  renderPredicciones(players, results);
+  renderPuntuacion(sc);
+}
+
+loadData();
+</script>
+</body>
+</html>
