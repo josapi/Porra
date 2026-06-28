@@ -1,0 +1,700 @@
+{
+  "players": [
+    {
+      "name": "Jose",
+      "groups": {
+        "A": [
+          "Corea del Sur",
+          "México"
+        ],
+        "B": [
+          "Suiza",
+          "Canadá"
+        ],
+        "C": [
+          "Brasil",
+          "Marruecos"
+        ],
+        "D": [
+          "Estados Unidos",
+          "Turquía"
+        ],
+        "E": [
+          "Alemania",
+          "Ecuador"
+        ],
+        "F": [
+          "Países Bajos",
+          "Japón"
+        ],
+        "G": [
+          "Bélgica",
+          "Egipto"
+        ],
+        "H": [
+          "España",
+          "Uruguay"
+        ],
+        "I": [
+          "Francia",
+          "Senegal"
+        ],
+        "J": [
+          "Argentina",
+          "Austria"
+        ],
+        "K": [
+          "Portugal",
+          "Colombia"
+        ],
+        "L": [
+          "Inglaterra",
+          "Croacia"
+        ]
+      },
+      "spain": [
+        [
+          "3",
+          "0"
+        ],
+        [
+          "1",
+          "0"
+        ],
+        [
+          "2",
+          "0"
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "España",
+      "subcampeon": "Portugal",
+      "revelacion": "Senegal",
+      "decepcion": "Argentina",
+      "pichichi": "Harry Kane",
+      "mvp": "Lamine Yamal",
+      "asistente": "Olise"
+    },
+    {
+      "name": "Luis",
+      "groups": {
+        "A": [
+          "Sudáfrica",
+          "México"
+        ],
+        "B": [
+          "Canadá",
+          "Bosnia y Herzegovina"
+        ],
+        "C": [
+          "Brasil",
+          "Marruecos"
+        ],
+        "D": [
+          "Estados Unidos",
+          "Australia"
+        ],
+        "E": [
+          "Alemania",
+          "Ecuador"
+        ],
+        "F": [
+          "Países Bajos",
+          "Japón"
+        ],
+        "G": [
+          "Bélgica",
+          "Egipto"
+        ],
+        "H": [
+          "España",
+          "Uruguay"
+        ],
+        "I": [
+          "Francia",
+          "Senegal"
+        ],
+        "J": [
+          "Argentina",
+          "Jordania"
+        ],
+        "K": [
+          "Portugal",
+          "Colombia"
+        ],
+        "L": [
+          "Inglaterra",
+          "Croacia"
+        ]
+      },
+      "spain": [
+        [
+          "4",
+          "0"
+        ],
+        [
+          "3",
+          "0"
+        ],
+        [
+          "3",
+          "0"
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "Brasil",
+      "subcampeon": "España",
+      "revelacion": "Senegal",
+      "decepcion": "Argentina",
+      "pichichi": "Mbappe",
+      "mvp": "Lamine Yamal",
+      "asistente": "Raphina"
+    },
+    {
+      "name": "Sergio",
+      "groups": {
+        "A": [
+          "",
+          ""
+        ],
+        "B": [
+          "",
+          ""
+        ],
+        "C": [
+          "",
+          ""
+        ],
+        "D": [
+          "",
+          ""
+        ],
+        "E": [
+          "",
+          ""
+        ],
+        "F": [
+          "",
+          ""
+        ],
+        "G": [
+          "",
+          ""
+        ],
+        "H": [
+          "",
+          ""
+        ],
+        "I": [
+          "",
+          ""
+        ],
+        "J": [
+          "",
+          ""
+        ],
+        "K": [
+          "",
+          ""
+        ],
+        "L": [
+          "",
+          ""
+        ]
+      },
+      "spain": [
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "",
+      "subcampeon": "",
+      "revelacion": "",
+      "decepcion": "",
+      "pichichi": "",
+      "mvp": "",
+      "asistente": ""
+    },
+    {
+      "name": "Pablo",
+      "groups": {
+        "A": [
+          "México",
+          "Corea del Sur"
+        ],
+        "B": [
+          "Suiza",
+          "Bosnia y Herzegovina"
+        ],
+        "C": [
+          "Brasil",
+          "Marruecos"
+        ],
+        "D": [
+          "Turquía",
+          "Estados Unidos"
+        ],
+        "E": [
+          "Alemania",
+          "Ecuador"
+        ],
+        "F": [
+          "Países Bajos",
+          "Japón"
+        ],
+        "G": [
+          "Bélgica",
+          "Egipto"
+        ],
+        "H": [
+          "España",
+          "Uruguay"
+        ],
+        "I": [
+          "Francia",
+          "Noruega"
+        ],
+        "J": [
+          "Argentina",
+          "Austria"
+        ],
+        "K": [
+          "Portugal",
+          "Colombia"
+        ],
+        "L": [
+          "Inglaterra",
+          "Croacia"
+        ]
+      },
+      "spain": [
+        [
+          "6",
+          "0"
+        ],
+        [
+          "2",
+          "0"
+        ],
+        [
+          "2",
+          "1"
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "Portugal",
+      "subcampeon": "Francia",
+      "revelacion": "Noruega",
+      "decepcion": "Brasil",
+      "pichichi": "Harry Kane",
+      "mvp": "Olise",
+      "asistente": "Bruno Fernandes"
+    },
+    {
+      "name": "Alvaro",
+      "groups": {
+        "A": [
+          "México",
+          "Chequia"
+        ],
+        "B": [
+          "Canadá",
+          "Suiza"
+        ],
+        "C": [
+          "Brasil",
+          "Escocia"
+        ],
+        "D": [
+          "Turquía",
+          "Estados Unidos"
+        ],
+        "E": [
+          "Alemania",
+          "Ecuador"
+        ],
+        "F": [
+          "Países Bajos",
+          "Japón"
+        ],
+        "G": [
+          "Bélgica",
+          "Egipto"
+        ],
+        "H": [
+          "España",
+          "Uruguay"
+        ],
+        "I": [
+          "Francia",
+          "Noruega"
+        ],
+        "J": [
+          "Argentina",
+          "Austria"
+        ],
+        "K": [
+          "Portugal",
+          "Colombia"
+        ],
+        "L": [
+          "Inglaterra",
+          "Croacia"
+        ]
+      },
+      "spain": [
+        [
+          "4",
+          "1"
+        ],
+        [
+          "4",
+          "0"
+        ],
+        [
+          "1",
+          "0"
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "Portugal",
+      "subcampeon": "Países Bajos",
+      "revelacion": "Turquía",
+      "decepcion": "Francia",
+      "pichichi": "Cody Gakpo",
+      "mvp": "Vitinha",
+      "asistente": "Pedri"
+    },
+    {
+      "name": "Alfredo",
+      "groups": {
+        "A": [
+          "México",
+          "Corea del Sur"
+        ],
+        "B": [
+          "Suiza",
+          "Canadá"
+        ],
+        "C": [
+          "Marruecos",
+          "Escocia"
+        ],
+        "D": [
+          "Estados Unidos",
+          "Turquía"
+        ],
+        "E": [
+          "Alemania",
+          "Ecuador"
+        ],
+        "F": [
+          "Países Bajos",
+          "Japón"
+        ],
+        "G": [
+          "Bélgica",
+          "Egipto"
+        ],
+        "H": [
+          "España",
+          "Uruguay"
+        ],
+        "I": [
+          "Francia",
+          "Noruega"
+        ],
+        "J": [
+          "Argentina",
+          "Austria"
+        ],
+        "K": [
+          "Portugal",
+          "Colombia"
+        ],
+        "L": [
+          "Inglaterra",
+          "Croacia"
+        ]
+      },
+      "spain": [
+        [
+          "5",
+          "0"
+        ],
+        [
+          "2",
+          "1"
+        ],
+        [
+          "3",
+          "1"
+        ]
+      ],
+      "spain_ko": {
+        "r16": [
+          "",
+          ""
+        ],
+        "r8": [
+          "",
+          ""
+        ],
+        "qf": [
+          "",
+          ""
+        ],
+        "sf": [
+          "",
+          ""
+        ],
+        "final": [
+          "",
+          ""
+        ]
+      },
+      "campeon": "Francia",
+      "subcampeon": "España",
+      "revelacion": "Ecuador",
+      "decepcion": "Brasil",
+      "pichichi": "Mbappe",
+      "mvp": "Mbappe",
+      "asistente": "Bruno F."
+    }
+  ],
+  "results": {
+    "groups": {
+      "A": [
+        "México",
+        "Sudáfrica"
+      ],
+      "B": [
+        "Suiza",
+        "Canadá"
+      ],
+      "C": [
+        "Brasil",
+        "Marruecos"
+      ],
+      "D": [
+        "Estados Unidos",
+        "Australia"
+      ],
+      "E": [
+        "Alemania",
+        "Costa de Marfil"
+      ],
+      "F": [
+        "Países Bajos",
+        "Japón"
+      ],
+      "G": [
+        "Bélgica",
+        "Egipto"
+      ],
+      "H": [
+        "España",
+        "Cabo Verde"
+      ],
+      "I": [
+        "Francia",
+        "Noruega"
+      ],
+      "J": [
+        "Argentina",
+        "Austria"
+      ],
+      "K": [
+        "Colombia",
+        "Portugal"
+      ],
+      "L": [
+        "Inglaterra",
+        "Croacia"
+      ]
+    },
+    "spain": [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "4",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ]
+    ],
+    "spain_ko": {
+      "r16": [
+        "",
+        ""
+      ],
+      "r8": [
+        "",
+        ""
+      ],
+      "qf": [
+        "",
+        ""
+      ],
+      "sf": [
+        "",
+        ""
+      ],
+      "final": [
+        "",
+        ""
+      ]
+    },
+    "campeon": "",
+    "subcampeon": "",
+    "revelacion": "",
+    "decepcion": "",
+    "mvp": "",
+    "pichichiTop3": [
+      "",
+      "",
+      ""
+    ],
+    "asistenteTop3": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "scoring": {
+    "spain_group_exact": 5,
+    "spain_ko_exact": 5,
+    "group_1st": 2,
+    "group_2nd": 4,
+    "revelacion": 6,
+    "estrellada": 6,
+    "pichichi_1st": 10,
+    "pichichi_rest": 5,
+    "asistente_1st": 8,
+    "asistente_rest": 4,
+    "mvp": 8,
+    "campeon": 20,
+    "campeon_if_sub": 10,
+    "subcampeon": 10,
+    "subcampeon_if_camp": 5
+  }
+}
